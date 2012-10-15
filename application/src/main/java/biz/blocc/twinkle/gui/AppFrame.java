@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class AppFrame {
 
-    private JFrame frame;
-
     public static AppFrame create() {
         return new AppFrame(new JFrame());
     }
@@ -19,6 +17,11 @@ public class AppFrame {
         frame.setVisible(true);
     }
 
+    //---------------------------------------------------------------------------
+    //----- End of public -------------------------------------------------------
+    //---------------------------------------------------------------------------
+
+    private JFrame frame;
 
     void init(JFrame frame) {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
