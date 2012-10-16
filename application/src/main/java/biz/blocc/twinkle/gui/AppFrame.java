@@ -8,11 +8,6 @@ public class AppFrame {
         return new AppFrame(new JFrame());
     }
 
-    public AppFrame(JFrame frame) {
-        this.frame = frame;
-        init(this.frame);
-    }
-
     public void show() {
         frame.setVisible(true);
     }
@@ -23,12 +18,15 @@ public class AppFrame {
 
     private JFrame frame;
 
+    AppFrame(JFrame frame) {
+        this.frame = frame;
+        init(this.frame);
+    }
+
     void init(JFrame frame) {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setLocationByPlatform(true);
         frame.setTitle("Twinkle");
     }
-
-
 }
