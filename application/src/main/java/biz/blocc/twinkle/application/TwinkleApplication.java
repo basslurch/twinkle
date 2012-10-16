@@ -7,8 +7,7 @@ public class TwinkleApplication {
 
     public static void main(String[] args) {
 
-        final AudioEngine audioEngine = new AudioEngine();
-        audioEngine.initialize();
+        final AudioEngine audioEngine = AudioEngine.create();
 
         final AppFrame appFrame = AppFrame.create();
         appFrame.show();

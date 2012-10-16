@@ -1,27 +1,40 @@
 package biz.blocc.twinkle.engine;
 
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Mixer;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class AudioEngine {
 
-    public void initialize() {
-        final AudioFileFormat.Type[] audioFileTypes = AudioSystem.getAudioFileTypes();
-        for (AudioFileFormat.Type audioFileType : audioFileTypes) {
-            System.out.println("audioFileType.getExtension() = " + audioFileType.getExtension());
-        }
-        System.out.println();
+    public static AudioEngine create() {
+        final AudioEngine audioEngine = new AudioEngine();
+        audioEngine.initialize(new JavaSoundAPI());
+        return audioEngine;
+    }
 
-        final Mixer.Info[] mixerInfos = AudioSystem.getMixerInfo();
+    public IODevice[] getDevices() {
+        final Collection<IODevice> deviceCollection = ioDevices.values();
+        return deviceCollection.toArray(new IODevice[deviceCollection.size()]);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    /////// END OF PUBLIC
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private HashMap<String, IODevice> ioDevices;
+
+    AudioEngine() {
+        ioDevices = new HashMap<String, IODevice>();
+    }
+
+    void initialize(SoundAPI soundAPI) {
+        final Mixer.Info[] mixerInfos = soundAPI.getMixerInfo();
         for (Mixer.Info mixerInfo : mixerInfos) {
-            System.out.println("mixerInfo = " + mixerInfo.getDescription());
-            System.out.println("mixerInfo = " + mixerInfo.getName());
-            System.out.println("mixerInfo = " + mixerInfo.getVendor());
-            System.out.println("mixerInfo = " + mixerInfo.getVersion());
-            System.out.println();
+            final IODevice ioDevice = new IODevice();
+            final String mixerInfoName = mixerInfo.getName();
+
+            ioDevice.setName(mixerInfoName);
+            ioDevices.put(mixerInfoName, ioDevice);
         }
-
-
     }
 }
