@@ -9,6 +9,11 @@ class MockSoundAPI implements SoundAPI {
         return mixers.toArray(new Mixer.Info[mixers.size()]);
     }
 
+    public Mixer getMixer(Mixer.Info info) {
+        // @todo 1 tb/tb add tests that uses this method :-)
+        return null;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////
     /////// END OF PUBLIC
     ////////////////////////////////////////////////////////////////////////////////

@@ -33,6 +33,14 @@ public class AudioEngine {
             final IODevice ioDevice = new IODevice();
             final String mixerInfoName = mixerInfo.getName();
 
+//            final Mixer mixer = soundAPI.getMixer(mixerInfo);
+//            if (mixer != null) {
+//                final Line.Info[] targetLineInfo = mixer.getTargetLineInfo();
+//                for (Line.Info info : targetLineInfo) {
+//                    System.out.println("info.toString() = " + info.toString());
+//                }
+//            }
+
             ioDevice.setName(mixerInfoName);
             ioDevices.put(mixerInfoName, ioDevice);
         }
