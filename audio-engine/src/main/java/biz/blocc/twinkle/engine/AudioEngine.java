@@ -22,9 +22,11 @@ public class AudioEngine {
     ////////////////////////////////////////////////////////////////////////////////
 
     private HashMap<String, IODevice> ioDevices;
+    private HashMap<String, Mixer.Info> ioMixers;
 
     AudioEngine() {
         ioDevices = new HashMap<String, IODevice>();
+        ioMixers = new HashMap<String, Mixer.Info>();
     }
 
     void initialize(SoundAPI soundAPI) {
@@ -33,16 +35,16 @@ public class AudioEngine {
             final IODevice ioDevice = new IODevice();
             final String mixerInfoName = mixerInfo.getName();
 
-//            final Mixer mixer = soundAPI.getMixer(mixerInfo);
-//            if (mixer != null) {
-//                final Line.Info[] targetLineInfo = mixer.getTargetLineInfo();
-//                for (Line.Info info : targetLineInfo) {
-//                    System.out.println("info.toString() = " + info.toString());
-//                }
-//            }
-
             ioDevice.setName(mixerInfoName);
+
             ioDevices.put(mixerInfoName, ioDevice);
+            ioMixers.put(mixerInfoName, mixerInfo);
         }
+    }
+
+    // for testing access only tb 2012.10.17
+    Mixer.Info[] getMixers() {
+        final Collection<Mixer.Info> values = ioMixers.values();
+        return values.toArray(new Mixer.Info[values.size()]);
     }
 }
