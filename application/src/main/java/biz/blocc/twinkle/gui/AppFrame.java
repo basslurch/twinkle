@@ -1,13 +1,16 @@
 package biz.blocc.twinkle.gui;
 
+import biz.blocc.twinkle.application.TwinkleApplication;
 import biz.blocc.twinkle.gui.action.ExitActionListener;
 
 import javax.swing.*;
 
 public class AppFrame {
 
-    public static AppFrame create() {
-        return new AppFrame(new JFrame());
+    public static AppFrame create(TwinkleApplication application) {
+        final AppFrame appFrame = new AppFrame(new JFrame());
+        appFrame.setApplication(application);
+        return appFrame;
     }
 
     public void show() {
@@ -18,6 +21,7 @@ public class AppFrame {
     //----- End of public -------------------------------------------------------
     //---------------------------------------------------------------------------
 
+    private TwinkleApplication application;
     private JFrame frame;
 
     AppFrame(JFrame frame) {
@@ -31,7 +35,7 @@ public class AppFrame {
         final JMenuBar menuBar = new JMenuBar();
         final JMenu fileMenu = new JMenu("File");
         final JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.addActionListener(new ExitActionListener());
+        exitItem.addActionListener(new ExitActionListener(application));
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
 
@@ -44,5 +48,9 @@ public class AppFrame {
         frame.setSize(300, 200);
         frame.setLocationByPlatform(true);
         frame.setTitle("Twinkle");
+    }
+
+    private void setApplication(TwinkleApplication application) {
+        this.application = application;
     }
 }

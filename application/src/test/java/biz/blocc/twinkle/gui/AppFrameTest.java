@@ -1,5 +1,6 @@
 package biz.blocc.twinkle.gui;
 
+import biz.blocc.twinkle.application.TwinkleApplication;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -39,7 +40,9 @@ public class AppFrameTest {
 
     @Test
     public void testCreate() {
-        final AppFrame appFrame = AppFrame.create();
+        final TwinkleApplication application = mock(TwinkleApplication.class);
+
+        final AppFrame appFrame = AppFrame.create(application);
         assertNotNull(appFrame);
     }
 }
