@@ -13,6 +13,8 @@
     <artifactId>acceptance-tests</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <name>GUI Acceptance Tests</name>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -22,14 +24,10 @@
         <dependency>
             <groupId>org.uispec4j</groupId>
             <artifactId>uispec4j</artifactId>
-            <version>2.4</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
