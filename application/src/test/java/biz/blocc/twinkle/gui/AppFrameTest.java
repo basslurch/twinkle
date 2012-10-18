@@ -12,15 +12,17 @@ import static org.testng.Assert.assertNotNull;
 public class AppFrameTest {
 
     private JFrame frameMock;
+    private TwinkleApplication applicationMock;
 
     @BeforeMethod
     public void setUp() {
         frameMock = mock(JFrame.class);
+        applicationMock = mock(TwinkleApplication.class);
     }
 
     @Test
     public void testShow() {
-        final AppFrame appFrame = new AppFrame(frameMock);
+        final AppFrame appFrame = new AppFrame(frameMock, applicationMock);
         appFrame.show();
 
         verify(frameMock, times(1)).setVisible(true);
@@ -28,7 +30,7 @@ public class AppFrameTest {
 
     @Test
     public void testInitFrame() {
-        final AppFrame appFrame = new AppFrame(new JFrame());
+        final AppFrame appFrame = new AppFrame(new JFrame(), applicationMock);
 
         appFrame.init(frameMock);
 

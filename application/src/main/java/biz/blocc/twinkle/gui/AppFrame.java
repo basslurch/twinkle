@@ -8,9 +8,7 @@ import javax.swing.*;
 public class AppFrame {
 
     public static AppFrame create(TwinkleApplication application) {
-        final AppFrame appFrame = new AppFrame(new JFrame());
-        appFrame.setApplication(application);
-        return appFrame;
+        return new AppFrame(new JFrame(), application);
     }
 
     public void show() {
@@ -21,11 +19,12 @@ public class AppFrame {
     //----- End of public -------------------------------------------------------
     //---------------------------------------------------------------------------
 
-    private TwinkleApplication application;
-    private JFrame frame;
+    private final TwinkleApplication application;
+    private final JFrame frame;
 
-    AppFrame(JFrame frame) {
+    AppFrame(JFrame frame, TwinkleApplication application) {
         this.frame = frame;
+        this.application = application;
         init(this.frame);
     }
 
@@ -48,9 +47,5 @@ public class AppFrame {
         frame.setSize(300, 200);
         frame.setLocationByPlatform(true);
         frame.setTitle("Twinkle");
-    }
-
-    private void setApplication(TwinkleApplication application) {
-        this.application = application;
     }
 }
