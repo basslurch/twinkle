@@ -10,6 +10,7 @@
     <modules>
         <module>application</module>
         <module>audio-engine</module>
+        <module>acceptance-tests</module>
     </modules>
 
     <packaging>pom</packaging>
