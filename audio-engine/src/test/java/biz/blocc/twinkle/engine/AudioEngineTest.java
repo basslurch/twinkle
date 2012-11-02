@@ -72,4 +72,15 @@ public class AudioEngineTest {
         assertEquals(mixers[0].getName(), expectedName_1);
         assertEquals(mixers[1].getName(), expectedName_2);
     }
+
+    @Test
+    public void testFirstDeviceIsSelectedByDefault() {
+        final MockSoundAPI soundAPI = new MockSoundAPI();
+        final String expectedName = "Cat";
+        soundAPI.add(new MockMixerInfo(expectedName, "vendor", "description", "version"));
+        audioEngine.initialize(soundAPI);
+
+        IODevice selectedDevice = audioEngine.getSelectedDevice();
+        assertEquals(selectedDevice.getName(), expectedName);
+    }
 }

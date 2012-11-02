@@ -17,12 +17,17 @@ public class AudioEngine {
         return deviceCollection.toArray(new IODevice[deviceCollection.size()]);
     }
 
+    public IODevice getSelectedDevice() {
+        return selectedDevice;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////
     /////// END OF PUBLIC
     ////////////////////////////////////////////////////////////////////////////////
 
     private HashMap<String, IODevice> ioDevices;
     private HashMap<String, Mixer.Info> ioMixers;
+    private IODevice selectedDevice;
 
     AudioEngine() {
         ioDevices = new HashMap<String, IODevice>();
@@ -30,6 +35,18 @@ public class AudioEngine {
     }
 
     void initialize(SoundAPI soundAPI) {
+        setupIODeviceList(soundAPI);
+
+        setDefaultSelectedDevice();
+    }
+
+    // for testing access only tb 2012.10.17
+    Mixer.Info[] getMixers() {
+        final Collection<Mixer.Info> values = ioMixers.values();
+        return values.toArray(new Mixer.Info[values.size()]);
+    }
+
+    private void setupIODeviceList(SoundAPI soundAPI) {
         final Mixer.Info[] mixerInfos = soundAPI.getMixerInfo();
         for (Mixer.Info mixerInfo : mixerInfos) {
             final IODevice ioDevice = new IODevice();
@@ -42,9 +59,10 @@ public class AudioEngine {
         }
     }
 
-    // for testing access only tb 2012.10.17
-    Mixer.Info[] getMixers() {
-        final Collection<Mixer.Info> values = ioMixers.values();
-        return values.toArray(new Mixer.Info[values.size()]);
+    private void setDefaultSelectedDevice() {
+        if (!ioDevices.isEmpty()) {
+            // @todo 2 tb/tb chained calls - remove and simplify
+            selectedDevice = ioDevices.values().iterator().next();
+        }
     }
 }
