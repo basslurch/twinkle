@@ -109,4 +109,31 @@ public class AudioBufferTest {
         assertSame(data_before[0], data_after[0]);
         assertSame(data_before[1], data_after[1]);
     }
+
+    @Test
+    public void testBufferInitiallyIsSilent() {
+        double[][] data = audioBuffer.getData();
+        assertStereoBufferIsSilent(data, audioBuffer.getLength());
+    }
+
+    @Test
+    public void testBufferIsSilentAfterAdaption() {
+        audioBuffer.setLength(127);
+        double[][] data = audioBuffer.getData();
+        assertStereoBufferIsSilent(data, audioBuffer.getLength());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    /////// END OF PUBLIC
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void assertStereoBufferIsSilent(double[][] data, int length) {
+        double[] left = data[0];
+        double[] right = data[1];
+        for (int n = 0; n < length; n++) {
+            assertEquals(left[n], 0.0, 1e-8);
+            assertEquals(right[n], 0.0, 1e-8);
+        }
+    }
+
 }

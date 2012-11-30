@@ -49,5 +49,4 @@ public class AudioBuffer {
     private void reAllocateData() {
         data = new double[numChannels][length];
     }
-
 }
