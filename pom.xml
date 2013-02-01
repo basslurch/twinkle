@@ -11,6 +11,7 @@
         <module>application</module>
         <module>audio-engine</module>
         <module>acceptance-tests</module>
+        <module>math</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -27,6 +28,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>audio-engine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>math</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
