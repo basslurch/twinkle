@@ -1,9 +1,12 @@
 package biz.blocc.twinkle.engine.source;
 
+import biz.blocc.math.statistic.ArithmeticMean;
+import biz.blocc.math.statistic.StatisticResult;
 import biz.blocc.twinkle.engine.AudioBuffer;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 public class WhiteNoiseSourceTest {
 
@@ -11,7 +14,7 @@ public class WhiteNoiseSourceTest {
     public void testProcessMono() {
         final WhiteNoiseSource source = new WhiteNoiseSource();
         final AudioBuffer sourceBuffer = new AudioBuffer();
-        sourceBuffer.setLength(65);
+        sourceBuffer.setLength(275);
         sourceBuffer.setNumChannels(1);
 
         final double[][] sourceBufferData = sourceBuffer.getData();
@@ -22,5 +25,7 @@ public class WhiteNoiseSourceTest {
 
         final AudioBuffer processedBuffer = source.process(sourceBuffer);
         assertNotNull(processedBuffer);
+        final StatisticResult statisticResult = ArithmeticMean.calculate(processedBuffer.getData()[0]);
+        assertTrue(Math.abs(statisticResult.getMean()) < 0.1);
     }
 }

@@ -15,6 +15,12 @@ public class StatisticResultTest {
     }
 
     @Test
+    public void testConstruction() {
+         assertEquals(result.getMean(), Double.NaN);
+         assertEquals(result.getStandardDeviation(), Double.NaN);
+    }
+
+    @Test
     public void testSetGetMean() {
         final double mean_1 = 3.8874;
         final double mean_2 = 0.23;

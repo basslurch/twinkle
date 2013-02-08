@@ -4,6 +4,11 @@ public class StatisticResult {
     private double mean;
     private double standardDeviation;
 
+    public StatisticResult() {
+        mean = Double.NaN;
+        standardDeviation = Double.NaN;
+    }
+
     public void setMean(double mean) {
         this.mean = mean;
     }
