@@ -25,7 +25,8 @@ public class WhiteNoiseSourceTest {
 
         final AudioBuffer processedBuffer = source.process(sourceBuffer);
         assertNotNull(processedBuffer);
-        final StatisticResult statisticResult = ArithmeticMean.calculate(processedBuffer.getData()[0]);
+        final StatisticResult statisticResult = ArithmeticMean.calculateWithStdDev(processedBuffer.getData()[0]);
         assertTrue(Math.abs(statisticResult.getMean()) < 0.1);
+        assertTrue(Math.abs(statisticResult.getStandardDeviation()) > 0.5);
     }
 }
