@@ -21,10 +21,7 @@
             <artifactId>application</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.uispec4j</groupId>
-            <artifactId>uispec4j</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
