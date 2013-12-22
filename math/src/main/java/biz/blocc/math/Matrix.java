@@ -9,6 +9,10 @@ public class Matrix {
         data = new double[rows][columns];
     }
 
+    public Matrix(double[][] array) {
+        data = array;
+    }
+
     public int getNumRows() {
         return data.length;
     }
